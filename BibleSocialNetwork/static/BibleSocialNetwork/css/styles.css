@@ -1,0 +1,16 @@
+h1 {
+    color: Blue;
+}
+
+.button {
+    background-color: #E35E1B;
+    color: white;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 6px 6px;
+    line-height: 15px;
+    width: 75%;
+    height: 50px;
+}

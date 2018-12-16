@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Bible Social Network</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <style>
+      #myInput {
+          background-image: url('../../static/BibleSocialNetwork/css/searchicon.png'); /* Add a search icon to input */
+          background-position: 10px 12px; /* Position the search icon */
+          background-repeat: no-repeat; /* Do not repeat the icon image */
+          width: 100%; /* Full-width */
+          font-size: 16px; /* Increase font-size */
+          padding: 12px 20px 12px 40px; /* Add some padding */
+          border: 1px solid #ddd; /* Add a grey border */
+          margin-bottom: 12px; /* Add some space below the input */
+        }
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 90%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0); /* Black w/ opacity */
+    }
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+      .modal-header {
+    background-color: #0066ff;
+    color: white;
+}
+.modal-footer {
+    background-color: #0066ff;
+    color: white;
+}
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="{% url 'index' %}">BSN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'graph' %}">Graph w/ data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'rankings' %}">Rankings</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'graphtest' %}">New Graph</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container" style="margin-top:80px">
+  <h3>Rankings Page</h3>
+</div>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+<table id="myTable" class="table table-hover"><thead><tr><th>Name</th><th>Connections</th></tr></thead><tbody><tr data-toggle="modal" data-target="#myModal"><td>Category:Old_Testament_Men</td><td>129</tr><tr data-toggle="modal" data-target="#myModal"><td>David</td><td>51</tr><tr data-toggle="modal" data-target="#myModal"><td>Abraham</td><td>40</tr><tr data-toggle="modal" data-target="#myModal"><td>Jacob</td><td>38</tr><tr data-toggle="modal" data-target="#myModal"><td>Judah_(Patriarch)</td><td>38</tr><tr data-toggle="modal" data-target="#myModal"><td>Seth</td><td>32</tr><tr data-toggle="modal" data-target="#myModal"><td>Shem</td><td>31</tr><tr data-toggle="modal" data-target="#myModal"><td>Jesus_Christ</td><td>31</tr><tr data-toggle="modal" data-target="#myModal"><td>Methuselah</td><td>31</tr><tr data-toggle="modal" data-target="#myModal"><td>Shelah</td><td>30</tr><tr data-toggle="modal" data-target="#myModal"><td>Noah</td><td>30</tr><tr data-toggle="modal" data-target="#myModal"><td>Terah</td><td>29</tr><tr data-toggle="modal" data-target="#myModal"><td>Adam</td><td>29</tr><tr data-toggle="modal" data-target="#myModal"><td>Cainan</td><td>29</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Old_Testament_Women</td><td>29</tr><tr data-toggle="modal" data-target="#myModal"><td>Jesse</td><td>28</tr><tr data-toggle="modal" data-target="#myModal"><td>Enoch_(Jared%27s_son)</td><td>28</tr><tr data-toggle="modal" data-target="#myModal"><td>Enosh</td><td>28</tr><tr data-toggle="modal" data-target="#myModal"><td>Lamech_(Father_of_Noah)</td><td>27</tr><tr data-toggle="modal" data-target="#myModal"><td>Arphaxad</td><td>27</tr><tr data-toggle="modal" data-target="#myModal"><td>Mahalalel</td><td>27</tr><tr data-toggle="modal" data-target="#myModal"><td>Obed</td><td>26</tr><tr data-toggle="modal" data-target="#myModal"><td>Jared</td><td>26</tr><tr data-toggle="modal" data-target="#myModal"><td>Reu</td><td>26</tr><tr data-toggle="modal" data-target="#myModal"><td>Peleg</td><td>25</tr><tr data-toggle="modal" data-target="#myModal"><td>Boaz</td><td>24</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Early_Christians</td><td>23</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Levites</td><td>21</tr><tr data-toggle="modal" data-target="#myModal"><td>Paul</td><td>19</tr><tr data-toggle="modal" data-target="#myModal"><td>Matthias_(Apostle)</td><td>18</tr><tr data-toggle="modal" data-target="#myModal"><td>Thomas</td><td>18</tr><tr data-toggle="modal" data-target="#myModal"><td>Tribes_of_Israel</td><td>18</tr><tr data-toggle="modal" data-target="#myModal"><td>Barnabas</td><td>17</tr><tr data-toggle="modal" data-target="#myModal"><td>John_the_Apostle</td><td>16</tr><tr data-toggle="modal" data-target="#myModal"><td>Joseph_(Old_Testament)</td><td>16</tr><tr data-toggle="modal" data-target="#myModal"><td>Philip_(Apostle)</td><td>15</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Apostles</td><td>15</tr><tr data-toggle="modal" data-target="#myModal"><td>Matthew_(Apostle)</td><td>15</tr><tr data-toggle="modal" data-target="#myModal"><td>James_(Son_of_Alphaeus)</td><td>15</tr><tr data-toggle="modal" data-target="#myModal"><td>James_(Son_of_Zebedee)</td><td>14</tr><tr data-toggle="modal" data-target="#myModal"><td>Aaron</td><td>14</tr><tr data-toggle="modal" data-target="#myModal"><td>Andrew</td><td>14</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Kings_of_Judah</td><td>13</tr><tr data-toggle="modal" data-target="#myModal"><td>Jephthah</td><td>12</tr><tr data-toggle="modal" data-target="#myModal"><td>Joab</td><td>12</tr><tr data-toggle="modal" data-target="#myModal"><td>Jonathan_(Son_of_Gershom)</td><td>10</tr><tr data-toggle="modal" data-target="#myModal"><td>Job_(Person)</td><td>9</tr><tr data-toggle="modal" data-target="#myModal"><td>Jehu_(Prophet)</td><td>9</tr><tr data-toggle="modal" data-target="#myModal"><td>Category:Judges</td><td>9</tr><tr data-toggle="modal" data-target="#myModal"><td>Josiah</td><td>8</tr></tbody></table>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer"></div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
